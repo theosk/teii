@@ -1,4 +1,4 @@
-doc = tutorial
+doc = trabajo
 
 diagrams = $(wildcard graph/*.svg)
 
