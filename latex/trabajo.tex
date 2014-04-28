@@ -13,7 +13,6 @@
 \renewcommand{\familydefault}{\sfdefault}
 
 
-\usepackage{hyperref}
 
 \hypersetup{
     pdfborder = {0 0 0}
@@ -210,14 +209,66 @@ tiempos(6) = calcularFuego(640, 480);
 
 barh(tiempos);
 title('Tiempos de ejecucion para tam. de problema');
-saveas (1, "tiempos.png");
 tiempos
 \end{lstlisting}
-sdafsdgsd
+\newpage
+Tras la ejecución, se ha obtenido la siguiente salida:\\
+\lstset{language=Octave}
+\begin{lstlisting}[frame=single][language=octave]
+tiempos =
+
+    3.6070   16.0295   32.3819   64.9396  217.8132 1068.9349
+\end{lstlisting}
+
+Con ellos podemos calcular el tiempo por fotograma y la cantidad de fotogramas por segundo:\\
+
+\begin{lstlisting}[frame=single][language=octave]
+tiempos/100
+ans =
+
+  0.036070  0.160295  0.323819  0.649396  2.178132 10.689349
+\end{lstlisting}
+\begin{table}[h!]
+\centering
+\begin{tabular}{ | r | c | c | c | }
+\hline
+  Resolución & Tiempo(s) & Tiempo por fotograma(s) & Fotogramas por segundo\\
+\hline
+  40x30 & 3.6070 & 0.036 &  27.724 \\
+  80x60 & 16.0295 & 0.16 & 6.2385 \\
+  120x80 & 32.3819 & 0.32 & 3.0881 \\
+  160x120 & 64.9396 & 0.64 & 1.5399 \\
+  320x200 & 217.8132 & 2.17 & 0.45911 \\
+  640x480 & 1068.9349 & 10.6 & 0.093551 \\
+\hline
+\end{tabular}
+\caption{Rendimiento empírico del algoritmo implementado en octave}
+\end{table}
+
+
+
+\begin{figure}[h!]
+  \centering
+    \includegraphics[scale=0.66]{img/octave}
+  \caption{Gráfico generado por octave}
+\end{figure}
+
+
+
+\section{Conclusiones}
+
+Vemos que el rendimiento es aceptable para la resolución más pequeña. No obstante, si tuviéramos en cuenta la mejora relativa de aplicar aritmética entera (obteniéndose teóricamente un mínimo de 5 veces más rendimiento), las tres primeras resoluciones quedarían por encima de los 15 fps. \\ \\
+Se trata de unos resultados aceptables teniendo en cuenta las limitaciones vistas en el apartado anterior. Es de hecho bastante común trabajar con este tipo de efectos a resoluciones mucho menores que la del modo de vídeo y aplicar posteriormente un escalado de la imagen.\cite{democol} \\ \\
+Se ha implementado la forma más sencilla del efecto en cuestión. Otras variaciones incluyen cierta aleatoriedad en los promedios para dar un aspecto más ruidoso a la imagen, e incluso simulaciones de otros factores como niveles de oxígeno.
+
+\newpage
 
 \begin{thebibliography}{99}
 \bibitem{intelLatency} Instruction Latencies in Assembly Code for 64-Bit Intel® Architecture:\\ \url{https://software.intel.com/en-us/articles/instruction-latencies-in-assembly-code-for-64-bit-intel-architecture?language=en}
 \bibitem{inlineequations} In-line equations:\\ \url{http://www.math.tamu.edu/~boas/courses/math696/LaTeX-in-line-equations.html}
+\bibitem{demowiki} Demo effect: \\ \url{http://en.wikipedia.org/wiki/Demo_effect}
+\bibitem{democol} The demo effects collection: \\ \url{http://demo-effects.sourceforge.net/}
+
 \end{thebibliography}
 \end{document}
 
